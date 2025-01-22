@@ -11,6 +11,8 @@ class Post extends Model
     use HasFactory;
     protected $fillable = ['title', 'author', 'slug', 'body'];
 
+    protected $with = ['author', 'category']; // Add this line
+
     public function author(): BelongsTo // Update the return type
     {
         return $this->belongsTo(User::class, 'author_id');
