@@ -1,16 +1,40 @@
 {
+    "version": 2,
+    "functions": {
+        "api/index.php": { 
+            "runtime": "vercel-php@0.6.0" }
+    },
     "builds": [
-      {
-        "src": "api/index.php",
-        "use": "@vercel/php"
-      }
+        {
+            "src": "api/index.php",
+            "use": "@vercel/php"
+        }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/api/index.php"
-      }
+        { "src": "/build/(.*)", "dest": "/public/build/" },
+        { "src": "/(.*)", "dest": "/api/index.php" }
     ],
-    "buildCommand": "apt-get update && apt-get install -y libssl1.0.0 libssl-dev && vercel build"
-  }
-  
+    "public": true,
+    "buildCommand": "apt-get update && apt-get install -y libssl1.0.0 libssl-dev && vercel build",
+    "outputDirectory": "public",
+    "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "true",
+        "APP_URL": "http://laravel11.test",
+        "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp",
+        "CACHE_DRIVER": "array",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "cookie",
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "2ae5w.h.filess.io",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "leolaravel_musclethey",
+        "DB_USERNAME": "leolaravel_musclethey"
+    }
+}
